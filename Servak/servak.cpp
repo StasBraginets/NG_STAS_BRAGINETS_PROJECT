@@ -23,6 +23,11 @@ servak::servak(QString ip, int port, QObject *parent)
     // If the signal and the slot have the same names, the program may not work correctly and conflict
 }
 
+servak::~servak()
+{
+    delete m_server;
+}
+
 void servak::newConnectionClient()        // New client
 {
     QTcpSocket* client = m_server->nextPendingConnection(); // We define it, connect it to the server and allocate memory
@@ -52,20 +57,38 @@ void servak::readyRead()                        // When there is something to re
 
     if (data.indexOf("<n>") == 0) // The first entry into the array. Returns a bool
     {
-        QByteArray login = data.remove(0, 3);
-        m_logins[client] = login;
+        QByteArray nickname = data.remove(0, 3);
+        m_logins[client] = nickname;
+        sendNicknames();
     }
     if (data.indexOf("<m>") == 0)
     {
         QByteArray message = data.remove(0, 3);
-        sendToAll(m_logins[client] + ": " + message);   // We send it to everyone on the server, in the general chat
-    }                          
+        for (short i = 0; i < message.size(); ++i) // Decryptor
+        {
+            message[i] = message[i] - encoding;
+        }
+        sendToAll("<m>" + m_logins[client] + ": " + message);   // We send it to everyone on the server, in the general chat
+    }
 }
 
 void servak::sendToAll(QByteArray message)
 {
-    for (QTcpSocket* buffer : m_clients)    // Iterate through the vector
+    foreach (QTcpSocket* buffer,  m_clients)    // Send the message to all clients
     {
-        buffer->write(message);             // Display all messages
+        buffer->write(message);     // Display all messages
+    }
+}
+
+void servak::sendNicknames()
+{
+    QMap<QTcpSocket*, QByteArray>::iterator it = m_logins.begin();
+    for (; it != m_logins.end(); ++it)
+    {
+        foreach (QTcpSocket* buffer,  m_clients)    // Send the nickname to all clients
+        {
+            buffer->write("<n>" + it.value());          //All names are glued together in one shipment, you need to separate them,
+                                                        // so that each is sent separately
+        }
     }
 }

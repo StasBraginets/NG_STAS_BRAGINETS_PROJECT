@@ -25,5 +25,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QTcpSocket* m_socket;
+    QVector <QString> nicknames;
 };
 #endif // MAINWINDOW_H

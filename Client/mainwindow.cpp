@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->p_chat->setReadOnly(true);
+
     m_socket = new QTcpSocket();
 
     connect(m_socket, &QTcpSocket::connected, this, &MainWindow::connected);
@@ -30,6 +32,7 @@ void MainWindow::connected()
 {
     ui->tabWidget->setCurrentIndex(1);                          // First page of tabWidget
     m_socket->write("<n>" + ui->l_nickname->text().toUtf8());   // Send a nickname to server
+
 }
 
 void MainWindow::sendMessage()
@@ -39,12 +42,33 @@ void MainWindow::sendMessage()
     {
         data.resize(data.length() - 1);
     }
+    for (short i = 0; i < data.size(); ++i) // Encryptor
+    {
+        data[i] = data[i] + ui->l_encryptor->text().toInt();
+    }
+    qDebug() << data;
     m_socket->write("<m>" + data);
     ui->p_message->clear();
 }
 
 void MainWindow::dataReceived()
 {
-    ui->p_chat->setPlainText(ui->p_chat->toPlainText() + m_socket->readAll() + "\n"); // New text
+    QByteArray message = m_socket->readAll();
+
+    if (message.indexOf("<n>") != -1)
+    {
+        message.remove(0, 3);
+        nicknames.push_back(message);
+        for (short i = 0; i < nicknames.size(); i++)
+        {
+            QListWidgetItem* nickname = new QListWidgetItem(nicknames[i]);
+            ui->lw_nicknames->addItem(nickname);
+        }
+    }
+    if (message.indexOf("<m>") != -1)
+    {
+        message.remove(0, 3);
+        ui->p_chat->setPlainText(ui->p_chat->toPlainText() + message + "\n"); // New text
+    }
 }
 

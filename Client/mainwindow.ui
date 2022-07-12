@@ -24,119 +24,244 @@
        <attribute name="title">
         <string>Tab 1</string>
        </attribute>
-       <widget class="QWidget" name="">
-        <property name="geometry">
-         <rect>
-          <x>260</x>
-          <y>140</y>
-          <width>232</width>
-          <height>134</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout">
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_2">
-             <item>
-              <widget class="QLabel" name="label">
-               <property name="text">
-                <string>ip</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string>port</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_3">
-               <property name="text">
-                <string>Nickname</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout">
-             <item>
-              <widget class="QLineEdit" name="l_ip"/>
-             </item>
-             <item>
-              <widget class="QSpinBox" name="sb_port">
-               <property name="maximum">
-                <number>16565</number>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="l_nickname"/>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QPushButton" name="b_connect">
-           <property name="text">
-            <string>Connect</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="1">
+         <spacer name="verticalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>143</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="0">
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>242</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="1">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout">
+              <item>
+               <widget class="QLabel" name="label">
+                <property name="text">
+                 <string>ip</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_2">
+                <property name="text">
+                 <string>port</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_3">
+                <property name="text">
+                 <string>Nickname</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_4">
+                <property name="text">
+                 <string>Encryptor</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_2">
+              <item>
+               <widget class="QLineEdit" name="l_ip"/>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="sb_port">
+                <property name="maximum">
+                 <number>16565</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="l_nickname"/>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="l_encryptor"/>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QPushButton" name="b_connect">
+            <property name="text">
+             <string>Connect</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="2">
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>242</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="2" column="1">
+         <spacer name="verticalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>142</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
         <string>Tab 2</string>
        </attribute>
-       <widget class="QPlainTextEdit" name="p_chat">
-        <property name="geometry">
-         <rect>
-          <x>60</x>
-          <y>50</y>
-          <width>481</width>
-          <height>261</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QPlainTextEdit" name="p_message">
-        <property name="geometry">
-         <rect>
-          <x>60</x>
-          <y>340</y>
-          <width>361</width>
-          <height>87</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QListWidget" name="listWidget">
-        <property name="geometry">
-         <rect>
-          <x>560</x>
-          <y>50</y>
-          <width>171</width>
-          <height>371</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="b_send">
-        <property name="geometry">
-         <rect>
-          <x>440</x>
-          <y>340</y>
-          <width>93</width>
-          <height>81</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>PushButton</string>
-        </property>
-       </widget>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="1">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>41</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="0">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>45</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="1" colspan="2">
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QPlainTextEdit" name="p_chat">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>471</width>
+                <height>271</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QPlainTextEdit" name="p_message">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>369</width>
+                  <height>87</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="b_send">
+                <property name="text">
+                 <string>&lt;-</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QListWidget" name="lw_nicknames">
+            <property name="maximumSize">
+             <size>
+              <width>159</width>
+              <height>369</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="3">
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>44</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="2" column="2">
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
