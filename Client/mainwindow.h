@@ -22,6 +22,8 @@ private slots:
     void sendMessage();
     void dataReceived();
 
+    void setStyle();
+
 private:
     Ui::MainWindow *ui;
     QTcpSocket* m_socket;
