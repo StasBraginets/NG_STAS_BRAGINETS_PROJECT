@@ -65,19 +65,42 @@ void MainWindow::sendMessage()
 
 void MainWindow::dataReceived()
 {
-    QByteArray message = m_socket->readAll();
+    QString message = m_socket->readAll();
 
-    if (message.indexOf("<n>") != -1)
+    if (message.indexOf("<n>") != -1)   // For nicknames
     {
-        message.remove(0, 3);
-        nicknames.push_back(message);
-        for (short i = 0; i < nicknames.size(); i++)
+        if (nicknames.size() == 0)      // If there is no nicknames at all
         {
-            QListWidgetItem* nickname = new QListWidgetItem(nicknames[i]);
+            message.remove(0, 3);
+            QStringList n_block = message.split("<n>");
+
+            for (short i = 0; i < n_block.size(); i++)
+            {
+                nicknames.push_back(n_block[i]);
+            }
+            for (short i = 0; i < nicknames.size(); i++)
+            {
+                QListWidgetItem* nickname = new QListWidgetItem(nicknames[i]);
+                ui->lw_nicknames->addItem(nickname);
+            }
+        }
+        else if (nicknames.size() > 0)  // If there is nicknames
+        {
+            message.replace("<n>", "");
+            for (short i = 0; i < nicknames.size(); i++)
+            {
+                if (message.indexOf(nicknames[i]) != -1)
+                {
+                    message.replace(nicknames[i], "");
+                }
+            }
+            nicknames.push_back(message);
+
+            QListWidgetItem* nickname = new QListWidgetItem(message);
             ui->lw_nicknames->addItem(nickname);
         }
     }
-    if (message.indexOf("<m>") != -1)
+    else if (message.indexOf("<m>") != -1)  // For usuall messages
     {
         message.remove(0, 3);
         ui->p_chat->setPlainText(ui->p_chat->toPlainText() + message + "\n"); // New text
