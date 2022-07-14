@@ -46,6 +46,11 @@ void servak::disconnectedClient()
     qDebug() << "Disconnected the client from: "<<
                 client->localAddress();
 
+    foreach (QTcpSocket* buffer,  m_clients)    // Send the message to all clients
+    {
+        buffer->write("<dc>" + m_logins[client]);     // Display all messages
+    }
+
     disconnect(client, &QTcpSocket::readyRead, this, &servak::readyRead);               // Turn off it from our functions
     disconnect(client, &QTcpSocket::disconnected, this, &servak::disconnectedClient);
 }
@@ -58,7 +63,12 @@ void servak::readyRead()                        // When there is something to re
     if (data.indexOf("<n>") == 0) // The first entry into the array. Returns a bool
     {
         QByteArray nickname = data.remove(0, 3);
-        m_logins[client] = nickname;
+
+        QMap<QTcpSocket*, QByteArray>::const_iterator it = m_logins.begin();
+        m_logins.insert(it, client, nickname);
+
+        //m_logins[client] = nickname;
+
         sendNicknames();
     }
     if (data.indexOf("<m>") == 0)
@@ -91,4 +101,5 @@ void servak::sendNicknames()
                                                         // so that each is sent separately
         }
     }
+    qDebug() << m_logins;
 }

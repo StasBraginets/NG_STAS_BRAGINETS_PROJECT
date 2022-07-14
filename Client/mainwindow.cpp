@@ -56,7 +56,7 @@ void MainWindow::sendMessage()
     }
     for (short i = 0; i < data.size(); ++i) // Encryptor
     {
-        data[i] = data[i] + ui->l_encryptor->text().toInt();
+        data[i] = data[i] + ui->sb_encryptor->text().toInt();
     }
     qDebug() << data;
     m_socket->write("<m>" + data);
@@ -66,6 +66,7 @@ void MainWindow::sendMessage()
 void MainWindow::dataReceived()
 {
     QString message = m_socket->readAll();
+    qDebug() << message;
 
     if (message.indexOf("<n>") != -1)   // For nicknames
     {
@@ -104,6 +105,20 @@ void MainWindow::dataReceived()
     {
         message.remove(0, 3);
         ui->p_chat->setPlainText(ui->p_chat->toPlainText() + message + "\n"); // New text
+    }
+    else if (message.indexOf("<dc>") != -1)     // Delete the nickname from List Widget
+    {
+        message.replace("<dc>", "");
+        for (short i = 0; i < nicknames.size(); i++)
+        {
+            if (nicknames[i] == message)
+            {
+                ui->lw_nicknames->takeItem(i);
+                nicknames.erase(nicknames.begin()+i);
+            }
+        }
+
+        // To delete the element from List Widget
     }
 }
 

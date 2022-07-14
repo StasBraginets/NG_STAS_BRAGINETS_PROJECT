@@ -22,7 +22,7 @@
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
-        <string>Tab 1</string>
+        <string>Registration</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="1">
@@ -103,7 +103,7 @@
                <widget class="QLineEdit" name="l_nickname"/>
               </item>
               <item>
-               <widget class="QLineEdit" name="l_encryptor"/>
+               <widget class="QSpinBox" name="sb_encryptor"/>
               </item>
              </layout>
             </item>
@@ -148,7 +148,7 @@
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
-        <string>Tab 2</string>
+        <string>Chat</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout">
         <item row="0" column="1">
