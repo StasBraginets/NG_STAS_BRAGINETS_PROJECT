@@ -77,6 +77,10 @@ void MainWindow::dataReceived()
 
             for (short i = 0; i < n_block.size(); i++)
             {
+                if (n_block[i] == "")
+                {
+                    continue;
+                }
                 nicknames.push_back(n_block[i]);
             }
             for (short i = 0; i < nicknames.size(); i++)
@@ -117,8 +121,6 @@ void MainWindow::dataReceived()
                 nicknames.erase(nicknames.begin()+i);
             }
         }
-
-        // To delete the element from List Widget
     }
 }
 

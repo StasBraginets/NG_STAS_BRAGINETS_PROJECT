@@ -50,6 +50,7 @@ void servak::disconnectedClient()
     {
         buffer->write("<dc>" + m_logins[client]);     // Display all messages
     }
+    m_logins.remove(client);                          // Delete the client from QMap
 
     disconnect(client, &QTcpSocket::readyRead, this, &servak::readyRead);               // Turn off it from our functions
     disconnect(client, &QTcpSocket::disconnected, this, &servak::disconnectedClient);
@@ -66,9 +67,6 @@ void servak::readyRead()                        // When there is something to re
 
         QMap<QTcpSocket*, QByteArray>::const_iterator it = m_logins.begin();
         m_logins.insert(it, client, nickname);
-
-        //m_logins[client] = nickname;
-
         sendNicknames();
     }
     if (data.indexOf("<m>") == 0)
@@ -97,9 +95,7 @@ void servak::sendNicknames()
     {
         foreach (QTcpSocket* buffer,  m_clients)    // Send the nickname to all clients
         {
-            buffer->write("<n>" + it.value());          //All names are glued together in one shipment, you need to separate them,
-                                                        // so that each is sent separately
+            buffer->write("<n>" + it.value());          //All names are glued together in one shipment
         }
     }
-    qDebug() << m_logins;
 }
