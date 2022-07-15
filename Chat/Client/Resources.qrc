@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/img">
         <file>Images/original.png</file>
+        <file>Images/sad_emogi.jpg</file>
+        <file>Images/quite.png</file>
     </qresource>
 </RCC>

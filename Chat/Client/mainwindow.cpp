@@ -9,6 +9,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->p_chat->setReadOnly(true);
 
     m_socket = new QTcpSocket();
+
+    ui->tabWidget->setTabEnabled(1, false);     // First tab is enable when the registration has overed
+    ui->menuEmogi->setEnabled(false);           // Disable menu
+    ui->menuActions->setEnabled(false);
     setStyle();
 
     connect(m_socket, &QTcpSocket::connected, this, &MainWindow::connected);
@@ -31,6 +35,12 @@ void MainWindow::connectToServer()
 
 void MainWindow::connected()
 {
+    ui->tabWidget->setTabEnabled(0, false);                     // First tab is able when the registration has overed
+    ui->tabWidget->setTabEnabled(1, true);
+
+    ui->menuEmogi->setEnabled(true);                            // Able menu
+    ui->menuActions->setEnabled(true);
+
     ui->tabWidget->setCurrentIndex(1);                          // First page of tabWidget
     m_socket->write("<n>" + ui->l_nickname->text().toUtf8());   // Send a nickname to server
 
@@ -66,7 +76,6 @@ void MainWindow::sendMessage()
 void MainWindow::dataReceived()
 {
     QString message = m_socket->readAll();
-    qDebug() << message;
 
     if (message.indexOf("<n>") != -1)   // For nicknames
     {
@@ -122,5 +131,28 @@ void MainWindow::dataReceived()
             }
         }
     }
+}
+
+
+/*void MainWindow::on_actionSad_emoji_triggered()
+{
+    QTextDocument *document = new QTextDocument(ui->p_message);
+    QTextCursor cursor(document);
+
+    QTextImageFormat imageFormat;
+    imageFormat.setName(":/img/Images/sad_emogi.jpg");
+    imageFormat.setHeight(2);
+    imageFormat.setWidth(2);
+    cursor.insertImage(imageFormat);
+
+
+
+    ui->p_message->setDocument(document);
+}*/
+
+
+void MainWindow::on_actionQuite_triggered()
+{
+    QApplication::quit();
 }
 

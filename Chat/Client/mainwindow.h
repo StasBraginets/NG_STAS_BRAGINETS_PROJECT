@@ -24,6 +24,10 @@ private slots:
 
     void setStyle();
 
+    //void on_actionSad_emoji_triggered();
+
+    void on_actionQuite_triggered();
+
 private:
     Ui::MainWindow *ui;
     QTcpSocket* m_socket;

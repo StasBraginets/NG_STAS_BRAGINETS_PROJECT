@@ -276,9 +276,46 @@
      <height>26</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuActions">
+    <property name="title">
+     <string>Actions</string>
+    </property>
+    <addaction name="actionQuite"/>
+   </widget>
+   <widget class="QMenu" name="menuEmogi">
+    <property name="title">
+     <string>Emogis</string>
+    </property>
+    <addaction name="actionSad_emoji"/>
+   </widget>
+   <addaction name="menuActions"/>
+   <addaction name="menuEmogi"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionQuite">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/img/Images/quite.png</normaloff>:/img/Images/quite.png</iconset>
+   </property>
+   <property name="text">
+    <string>Quite</string>
+   </property>
+  </action>
+  <action name="actionSad_emoji">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/img/Images/sad_emogi.jpg</normaloff>:/img/Images/sad_emogi.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>Sad emoji</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="Resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
