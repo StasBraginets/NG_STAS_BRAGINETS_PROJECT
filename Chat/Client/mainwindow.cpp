@@ -55,6 +55,7 @@ void MainWindow::setStyle()
 
     ui->p_chat->setStyleSheet("color: yellow; border-image: url(:/img/Images/original.png)");
 
+    //ui->tab_Registration->setStyleSheet("border-image: url(:/img/Images/original.png)"); // I can`t correctly add the border-image for registration
 }
 
 void MainWindow::sendMessage()
@@ -68,7 +69,6 @@ void MainWindow::sendMessage()
     {
         data[i] = data[i] + ui->sb_encryptor->text().toInt();
     }
-    qDebug() << data;
     m_socket->write("<m>" + data);
     ui->p_message->clear();
 }
@@ -134,7 +134,7 @@ void MainWindow::dataReceived()
 }
 
 
-/*void MainWindow::on_actionSad_emoji_triggered()
+/*void MainWindow::on_actionSad_emoji_triggered()   // Can`t add the image to p_message
 {
     QTextDocument *document = new QTextDocument(ui->p_message);
     QTextCursor cursor(document);
