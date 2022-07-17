@@ -13,7 +13,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tabWidget->setTabEnabled(1, false);     // First tab is enable when the registration has overed
     ui->menuEmogi->setEnabled(false);           // Disable menu
     ui->menuActions->setEnabled(false);
-    setStyle();
 
     connect(m_socket, &QTcpSocket::connected, this, &MainWindow::connected);
     connect(m_socket, &QTcpSocket::readyRead, this, &MainWindow::dataReceived);
@@ -44,18 +43,6 @@ void MainWindow::connected()
     ui->tabWidget->setCurrentIndex(1);                          // First page of tabWidget
     m_socket->write("<n>" + ui->l_nickname->text().toUtf8());   // Send a nickname to server
 
-}
-
-void MainWindow::setStyle()
-{
-    /*ui->b_connect->setStyleSheet("color: yellow; background: green;"
-                                 "border-style: outset; border-width: 2px;"
-                                 "border-radius: 10px; border-color: beige;"
-                                 "font: bold 14px; min-width: 10em; padding: 6px");*/
-
-    /*ui->p_chat->setStyleSheet("color: yellow; border-image: url(:/img/Images/original.png)");*/
-
-    //ui->tab_Registration->setStyleSheet("border-image: url(:/img/Images/original.png)"); // I can`t correctly add the border-image for registration
 }
 
 void MainWindow::sendMessage()

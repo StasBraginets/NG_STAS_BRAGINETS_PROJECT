@@ -22,8 +22,6 @@ private slots:
     void sendMessage();
     void dataReceived();
 
-    void setStyle();
-
     //void on_actionSad_emoji_triggered();
 
     void on_actionQuite_triggered();
