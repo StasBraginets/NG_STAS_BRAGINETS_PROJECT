@@ -4,5 +4,6 @@
         <file>Images/sad_emogi.jpg</file>
         <file>Images/quite.png</file>
         <file>Images/Registration.png</file>
+        <file>Images/p_message.png</file>
     </qresource>
 </RCC>

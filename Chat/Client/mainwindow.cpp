@@ -48,12 +48,12 @@ void MainWindow::connected()
 
 void MainWindow::setStyle()
 {
-    ui->b_connect->setStyleSheet("color: yellow; background: green;"
+    /*ui->b_connect->setStyleSheet("color: yellow; background: green;"
                                  "border-style: outset; border-width: 2px;"
                                  "border-radius: 10px; border-color: beige;"
-                                 "font: bold 14px; min-width: 10em; padding: 6px");
+                                 "font: bold 14px; min-width: 10em; padding: 6px");*/
 
-    ui->p_chat->setStyleSheet("color: yellow; border-image: url(:/img/Images/original.png)");
+    /*ui->p_chat->setStyleSheet("color: yellow; border-image: url(:/img/Images/original.png)");*/
 
     //ui->tab_Registration->setStyleSheet("border-image: url(:/img/Images/original.png)"); // I can`t correctly add the border-image for registration
 }
